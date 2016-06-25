@@ -1,0 +1,7 @@
+C:\Users\tranm\Desktop\Tuan\WebTinTuc\WebTinTuc\bin\WebTinTuc.dll.config
+C:\Users\tranm\Desktop\Tuan\WebTinTuc\WebTinTuc\bin\WebTinTuc.dll
+C:\Users\tranm\Desktop\Tuan\WebTinTuc\WebTinTuc\bin\WebTinTuc.pdb
+C:\Users\tranm\Desktop\Tuan\WebTinTuc\WebTinTuc\obj\Debug\WebTinTuc.csprojResolveAssemblyReference.cache
+C:\Users\tranm\Desktop\Tuan\WebTinTuc\WebTinTuc\obj\Debug\WebTinTuc.dll
+C:\Users\tranm\Desktop\Tuan\WebTinTuc\WebTinTuc\obj\Debug\WebTinTuc.pdb
+C:\Users\tranm\Desktop\Tuan\WebTinTuc\WebTinTuc\bin\CKEditor.NET.dll

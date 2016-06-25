@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="News" Class="NewsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-DRN50JM;Initial Catalog=News;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="NewsConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Categories" Member="Categories">
+    <Type Name="Category">
+      <Column Name="ID_cat" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Cat_name" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Category_Post1" Member="Post1s" ThisKey="ID_cat" OtherKey="ID_cat" Type="Post1" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="ID_user" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_name" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="User_pass" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Posts" Member="Post1s">
+    <Type Name="Post1">
+      <Column Name="ID_post" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Post_title" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Post_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Post_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_cat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Post_thumb" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Category_Post1" Member="Category" ThisKey="ID_cat" OtherKey="ID_cat" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.Cat_Delete" Method="Cat_Delete">
+    <Parameter Name="ID_cat" Parameter="iD_cat" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.User_Update" Method="User_Update">
+    <Parameter Name="User_name" Parameter="user_name" Type="System.String" DbType="NChar(50)" />
+    <Parameter Name="User_pass" Parameter="user_pass" Type="System.String" DbType="NChar(50)" />
+    <Parameter Name="ID_user" Parameter="iD_user" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Cat_Insert" Method="Cat_Insert">
+    <Parameter Name="Cat_name" Parameter="cat_name" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Cat_SelectAll" Method="Cat_SelectAll">
+    <ElementType Name="Cat_SelectAllResult">
+      <Column Name="ID_cat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cat_name" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Cat_SelectID" Method="Cat_SelectID">
+    <Parameter Name="idCat" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Cat_SelectIDResult">
+      <Column Name="ID_cat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cat_name" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Cat_Update" Method="Cat_Update">
+    <Parameter Name="Cat_name" Parameter="cat_name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ID_cat" Parameter="iD_cat" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Post_SelectAll" Method="Post_SelectAll">
+    <ElementType Name="Post_SelectAllResult">
+      <Column Name="ID_post" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Post_title" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Post_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Post_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_cat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Post_thumb" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Post_SelectHome" Method="Post_SelectHome">
+    <Parameter Name="ID_cat" Parameter="iD_cat" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Post_SelectHomeResult">
+      <Column Name="ID_post" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Post_title" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Post_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Post_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_cat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Post_thumb" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ID_cat1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cat_name" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Post_SelectIDcat" Method="Post_SelectIDcat">
+    <Parameter Name="ID_cat" Parameter="iD_cat" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Post_SelectIDcatResult">
+      <Column Name="ID_post" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Post_title" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Post_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Post_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_cat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Post_thumb" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Post_SelectRandom" Method="Post_SelectRandom">
+    <Parameter Name="idCat" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Post_SelectRandomResult">
+      <Column Name="ID_post" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Post_title" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Post_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Post_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_cat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Post_thumb" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Post_slide" Method="Post_slide">
+    <ElementType Name="Post_slideResult">
+      <Column Name="ID_post" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Post_title" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Post_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Post_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_cat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Post_thumb" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Post_Update" Method="Post_Update">
+    <Parameter Name="ID_post" Parameter="iD_post" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Post_title" Parameter="post_title" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="Post_content" Parameter="post_content" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.User_Delete" Method="User_Delete">
+    <Parameter Name="ID_user" Parameter="iD_user" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.User_Insert" Method="User_Insert">
+    <Parameter Name="User_name" Parameter="user_name" Type="System.String" DbType="NChar(50)" />
+    <Parameter Name="User_pass" Parameter="user_pass" Type="System.String" DbType="NChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.User_Search" Method="User_Search">
+    <Parameter Name="User_name" Parameter="user_name" Type="System.String" DbType="NChar(50)" />
+    <Parameter Name="User_pass" Parameter="user_pass" Type="System.String" DbType="NChar(50)" />
+    <ElementType Name="User_SearchResult">
+      <Column Name="ID_user" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_name" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="User_pass" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.User_SelectAll" Method="User_SelectAll">
+    <ElementType Name="User_SelectAllResult">
+      <Column Name="ID_user" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_name" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="User_pass" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Post_Insert" Method="Post_Insert">
+    <Parameter Name="Post_title" Parameter="post_title" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="Post_content" Parameter="post_content" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Post_date" Parameter="post_date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Post_cat" Parameter="post_cat" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Post_thumb" Parameter="post_thumb" Type="System.String" DbType="NVarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Post_SelectAdmin" Method="Post_SelectAdmin">
+    <ElementType Name="Post_SelectAdminResult">
+      <Column Name="ID_post" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Post_title" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Post_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Post_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_cat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Post_thumb" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ID_cat1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cat_name" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Post_SelectID" Method="Post_SelectID">
+    <Parameter Name="ID_post" Parameter="iD_post" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Post_SelectIDResult">
+      <Column Name="ID_post" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Post_title" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Post_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Post_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_cat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Post_thumb" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ID_cat1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cat_name" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Post_Delete" Method="Post_Delete">
+    <Parameter Name="IDpost" Parameter="iDpost" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
